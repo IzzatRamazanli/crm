@@ -1,0 +1,12 @@
+version: 3.0.6
+
+services:
+  db :
+    image: postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: ivr
