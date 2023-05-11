@@ -1,13 +1,18 @@
 package az.izzat.crm.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 import az.izzat.crm.dto.req.BillPaymentRequest;
+import az.izzat.crm.dto.resp.BillAmountInfoResponse;
 import az.izzat.crm.dto.resp.BillDataResponse;
 import az.izzat.crm.dto.resp.BillStatusResponse;
 import az.izzat.crm.dto.resp.RestResponse;
 import az.izzat.crm.enums.OperationStatus;
+import az.izzat.crm.services.BillAmountInformationService;
 import az.izzat.crm.services.IvrBillDataService;
 import az.izzat.crm.services.IvrBillPaymentService;
 import az.izzat.crm.services.RestaurantBillStatusService;
@@ -31,7 +36,13 @@ public class OperationController {
     private final IvrBillDataService ivrBillDataService;
     private final IvrBillPaymentService ivrBillPaymentService;
     private final RestaurantBillStatusService restaurantBillStatusService;
+    private final BillAmountInformationService billAmountInformationService;
 
+
+    @ApiOperation(value = "Get restaurant billing data", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
     @GetMapping("/bill-data")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<BillDataResponse> getInformationAboutBill(
@@ -47,6 +58,11 @@ public class OperationController {
                 .build();
     }
 
+
+    @ApiOperation(value = "Payment restaurant bill amount", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
     @PostMapping("/payment")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<String> billPayment(
@@ -59,6 +75,11 @@ public class OperationController {
                 .build();
     }
 
+
+    @ApiOperation(value = "Freeze bill status", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
     @PostMapping("/freeze")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<BillStatusResponse> freezeBillStatus(
@@ -73,6 +94,11 @@ public class OperationController {
                 .build();
     }
 
+
+    @ApiOperation(value = "Unfreeze bill status", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
     @PostMapping("/unfreeze")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<BillStatusResponse> unfreezeBillStatus(
@@ -84,6 +110,24 @@ public class OperationController {
         return RestResponse.<BillStatusResponse>builder()
                 .status(OperationStatus.SUCCESS)
                 .data(restaurantBillStatusService.unfreezeBillStatus(contractNumber))
+                .build();
+    }
+
+    @ApiOperation(value = "Unfreeze bill status", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
+    @GetMapping("/bill-amount")
+    @ResponseStatus(HttpStatus.OK)
+    public RestResponse<BillAmountInfoResponse> getBillAmountInfo(
+            @RequestParam
+            @ApiParam(value = "contract number, must be 4 digits",
+                    required = true,
+                    example = "1234")
+            String contractNumber) {
+        return RestResponse.<BillAmountInfoResponse>builder()
+                .status(OperationStatus.SUCCESS)
+                .data(billAmountInformationService.getInfoAboutBillAmount(contractNumber))
                 .build();
     }
 }

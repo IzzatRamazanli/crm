@@ -1,7 +1,10 @@
 package az.izzat.crm.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 import az.izzat.crm.dto.resp.OtpResponse;
 import az.izzat.crm.dto.resp.RestResponse;
@@ -27,6 +30,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class VerificationController {
     private final IvrCustomerVerificationService ivrCustomerVerification;
 
+
+    @ApiOperation(value = "Customer Verification via Contract Number's last 4 digits",
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
     @PostMapping("/contract-number")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<VerificationResponse> verifyCustomerViaContNumber(
@@ -41,7 +50,12 @@ public class VerificationController {
                 .build();
     }
 
-    @PostMapping("/phone-number")
+
+    @ApiOperation(value = "Send otp for verification", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
+    @PostMapping("/send-otp")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<OtpResponse> sendOtpToPhoneNumber(
             @RequestParam
@@ -58,10 +72,16 @@ public class VerificationController {
                 .build();
     }
 
+
+    @ApiOperation(value = "Otp code verification", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
     @PostMapping("/otp")
     @ResponseStatus(HttpStatus.OK)
-    public RestResponse<VerificationResponse> verifySentOtp(@RequestParam
-                                                            @ApiParam(value = "otp code", example = "123456", required = true)
+    public RestResponse<VerificationResponse> verifyOtpCode(@RequestParam
+                                                            @ApiParam(value = "otp code", example = "123456",
+                                                                    required = true)
                                                             String otpCode) {
         return RestResponse.<VerificationResponse>builder()
                 .status(OperationStatus.SUCCESS)
