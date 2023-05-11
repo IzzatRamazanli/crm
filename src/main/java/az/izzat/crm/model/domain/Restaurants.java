@@ -1,4 +1,4 @@
-package az.izzat.crm.model;
+package az.izzat.crm.model.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Data
@@ -19,6 +21,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Table(name = "restaurants")
+@DynamicInsert
+@DynamicUpdate
 public class Restaurants {
 
     @Id
