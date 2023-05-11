@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import az.izzat.crm.dto.resp.ErrorResponse;
 import az.izzat.crm.dto.resp.OtpResponse;
 import az.izzat.crm.dto.resp.RestResponse;
 import az.izzat.crm.dto.resp.VerificationResponse;
@@ -34,8 +35,8 @@ public class VerificationController {
     @ApiOperation(value = "Customer Verification via Contract Number's last 4 digits",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
-            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
+            @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})
     @PostMapping("/contract-number")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<VerificationResponse> verifyCustomerViaContNumber(
@@ -53,8 +54,8 @@ public class VerificationController {
 
     @ApiOperation(value = "Send otp for verification", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
-            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
+            @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})
     @PostMapping("/send-otp")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<OtpResponse> sendOtpToPhoneNumber(
@@ -75,8 +76,8 @@ public class VerificationController {
 
     @ApiOperation(value = "Otp code verification", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
-            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
+            @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})
     @PostMapping("/otp")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<VerificationResponse> verifyOtpCode(@RequestParam

@@ -10,6 +10,7 @@ import az.izzat.crm.dto.req.BillPaymentRequest;
 import az.izzat.crm.dto.resp.BillAmountInfoResponse;
 import az.izzat.crm.dto.resp.BillDataResponse;
 import az.izzat.crm.dto.resp.BillStatusResponse;
+import az.izzat.crm.dto.resp.ErrorResponse;
 import az.izzat.crm.dto.resp.RestResponse;
 import az.izzat.crm.enums.OperationStatus;
 import az.izzat.crm.services.BillAmountInformationService;
@@ -41,8 +42,8 @@ public class OperationController {
 
     @ApiOperation(value = "Get restaurant billing data", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
-            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
+            @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})
     @GetMapping("/bill-data")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<BillDataResponse> getInformationAboutBill(
@@ -61,8 +62,8 @@ public class OperationController {
 
     @ApiOperation(value = "Payment restaurant bill amount", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
-            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
+            @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})
     @PostMapping("/payment")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<String> billPayment(
@@ -78,8 +79,8 @@ public class OperationController {
 
     @ApiOperation(value = "Freeze bill status", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
-            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
+            @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})
     @PostMapping("/freeze")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<BillStatusResponse> freezeBillStatus(
@@ -97,8 +98,8 @@ public class OperationController {
 
     @ApiOperation(value = "Unfreeze bill status", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
-            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
+            @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})
     @PostMapping("/unfreeze")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<BillStatusResponse> unfreezeBillStatus(
@@ -115,8 +116,8 @@ public class OperationController {
 
     @ApiOperation(value = "Unfreeze bill status", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
-            @ApiResponse(code = 400, message = "Bad request", response = RestResponse.class),
-            @ApiResponse(code = 404, message = "No data found", response = RestResponse.class)})
+            @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
+            @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})
     @GetMapping("/bill-amount")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<BillAmountInfoResponse> getBillAmountInfo(
