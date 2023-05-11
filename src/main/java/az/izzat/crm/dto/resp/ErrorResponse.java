@@ -1,4 +1,4 @@
-package az.izzat.crm.dto;
+package az.izzat.crm.dto.resp;
 
 import java.time.LocalDateTime;
 

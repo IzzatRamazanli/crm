@@ -29,6 +29,7 @@ public class Restaurants {
     @GeneratedValue
     private String id;
     private String owner;
+    private String name;
     private String contractNumber;
     private String location;
     private String number;

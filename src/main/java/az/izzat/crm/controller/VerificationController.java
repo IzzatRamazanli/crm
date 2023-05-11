@@ -3,9 +3,9 @@ package az.izzat.crm.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 
-import az.izzat.crm.dto.OtpResponse;
-import az.izzat.crm.dto.RestResponse;
-import az.izzat.crm.dto.VerificationResponse;
+import az.izzat.crm.dto.resp.OtpResponse;
+import az.izzat.crm.dto.resp.RestResponse;
+import az.izzat.crm.dto.resp.VerificationResponse;
 import az.izzat.crm.enums.OperationStatus;
 import az.izzat.crm.services.IvrCustomerVerificationService;
 import lombok.RequiredArgsConstructor;

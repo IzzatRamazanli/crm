@@ -3,14 +3,14 @@ package az.izzat.crm.services.impl;
 import java.util.Optional;
 import java.util.Random;
 
-import az.izzat.crm.dto.OtpResponse;
-import az.izzat.crm.dto.VerificationResponse;
+import az.izzat.crm.dto.resp.OtpResponse;
+import az.izzat.crm.dto.resp.VerificationResponse;
 import az.izzat.crm.enums.OperationName;
 import az.izzat.crm.enums.OperationStatus;
 import az.izzat.crm.enums.ValidationStatus;
 import az.izzat.crm.exception.RecordNotFoundException;
 import az.izzat.crm.model.CustomerValidationLog;
-import az.izzat.crm.model.Otp;
+import az.izzat.crm.model.domain.Otp;
 import az.izzat.crm.model.domain.Customer;
 import az.izzat.crm.model.domain.Restaurants;
 import az.izzat.crm.repository.CustomerRepository;

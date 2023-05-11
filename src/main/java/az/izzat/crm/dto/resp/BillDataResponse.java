@@ -1,4 +1,4 @@
-package az.izzat.crm.dto;
+package az.izzat.crm.dto.resp;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BillDataResponse {
+    private String id;
     @Enumerated(EnumType.STRING)
     private BillingStatus billingStatus;
     private Double billAmount;

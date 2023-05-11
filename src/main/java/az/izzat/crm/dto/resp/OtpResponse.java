@@ -1,4 +1,4 @@
-package az.izzat.crm.dto;
+package az.izzat.crm.dto.resp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class VerificationResponse {
-    private String id;
+public class OtpResponse {
+    String otpCode;
 }

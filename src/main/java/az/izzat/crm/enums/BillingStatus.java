@@ -2,6 +2,7 @@ package az.izzat.crm.enums;
 
 public enum BillingStatus {
     POSITIVE,
-    NEGATIVE,
-    FREEZE
+    PAYMENT_NEEDED,
+    FREEZE,
+    UNFREEZE
 }

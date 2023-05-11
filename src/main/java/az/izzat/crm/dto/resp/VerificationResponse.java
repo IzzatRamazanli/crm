@@ -1,6 +1,5 @@
-package az.izzat.crm.dto;
+package az.izzat.crm.dto.resp;
 
-import az.izzat.crm.enums.OperationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class RestResponse<T> {
-    private OperationStatus status;
-    private T data;
+public class VerificationResponse {
+    private String id;
 }

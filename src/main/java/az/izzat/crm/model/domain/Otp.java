@@ -1,4 +1,4 @@
-package az.izzat.crm.model;
+package az.izzat.crm.model.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

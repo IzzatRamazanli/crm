@@ -5,5 +5,7 @@ public enum OperationName {
     PAYMENT,
     OTP_SEND,
     OTP_VERIFICATION,
+    BILL_DATA,
+    BILL_PAYMENT,
     OTHER
 }

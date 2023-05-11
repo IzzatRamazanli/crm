@@ -3,7 +3,7 @@ package az.izzat.crm.handler;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
 
-import az.izzat.crm.dto.ErrorResponse;
+import az.izzat.crm.dto.resp.ErrorResponse;
 import az.izzat.crm.exception.BillingNegativeException;
 import az.izzat.crm.exception.OtpCodeException;
 import az.izzat.crm.exception.RecordNotFoundException;
