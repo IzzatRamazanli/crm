@@ -9,6 +9,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
@@ -18,7 +19,7 @@ import javax.persistence.*;
 @Table(name = "restaurants")
 @DynamicInsert
 @DynamicUpdate
-public class Restaurants {
+public class Restaurants implements Serializable {
 
     @Id
     @GeneratedValue

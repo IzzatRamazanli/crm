@@ -1,32 +1,17 @@
 package az.izzat.crm.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
 import az.izzat.crm.dto.req.BillPaymentRequest;
-import az.izzat.crm.dto.resp.BillAmountInfoResponse;
-import az.izzat.crm.dto.resp.BillDataResponse;
-import az.izzat.crm.dto.resp.BillStatusResponse;
-import az.izzat.crm.dto.resp.ErrorResponse;
-import az.izzat.crm.dto.resp.RestResponse;
+import az.izzat.crm.dto.resp.*;
 import az.izzat.crm.enums.OperationStatus;
 import az.izzat.crm.services.BillAmountInformationService;
 import az.izzat.crm.services.IvrBillDataService;
 import az.izzat.crm.services.IvrBillPaymentService;
 import az.izzat.crm.services.RestaurantBillStatusService;
+import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/operations")
@@ -114,7 +99,7 @@ public class OperationController {
                 .build();
     }
 
-    @ApiOperation(value = "Unfreeze bill status", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Learn bill amount", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
             @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})

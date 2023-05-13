@@ -32,7 +32,7 @@ public class IvrBillPaymentServiceImpl implements IvrBillPaymentService {
                 new RecordNotFoundException("Log not found")
         );
 
-        Restaurants restaurant = restaurantsRepository.findById(Long.valueOf(logData.getRestaurant()))
+        Restaurants restaurant = restaurantsRepository.findById(logData.getRestaurant())
                 .orElseThrow(() -> new RecordNotFoundException("Restaurant not found"));
         if (!restaurant.getBillingStatus().equals(BillingStatus.FREEZE)) {
             restaurant.setBillAmount(request.getAmount());

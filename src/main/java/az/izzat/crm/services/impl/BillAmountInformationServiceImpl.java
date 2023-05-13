@@ -1,9 +1,11 @@
 package az.izzat.crm.services.impl;
 
+import az.izzat.crm.dto.RestaurantsDto;
 import az.izzat.crm.dto.resp.BillAmountInfoResponse;
 import az.izzat.crm.enums.OperationName;
 import az.izzat.crm.enums.OperationStatus;
 import az.izzat.crm.exception.RecordNotFoundException;
+import az.izzat.crm.mapper.RestaurantsMapper;
 import az.izzat.crm.model.OperationsLog;
 import az.izzat.crm.model.domain.RestaurantBillingAmounts;
 import az.izzat.crm.model.domain.Restaurants;
@@ -30,8 +32,9 @@ public class BillAmountInformationServiceImpl implements BillAmountInformationSe
     public BillAmountInfoResponse getInfoAboutBillAmount(String contractNumber) {
         Restaurants restaurant = restaurantsRepository.findRestaurantsByContractNumberEndsWith(contractNumber)
                 .orElseThrow(() -> new RecordNotFoundException("Restaurant not found"));
+        RestaurantsDto restaurantsDto = RestaurantsMapper.INSTANCE.restaurantsToDto(restaurant);
         RestaurantBillingAmounts billData =
-                billAmountRepository.findRestaurantBillingAmountsByRestaurants(restaurant)
+                billAmountRepository.findRestaurantBillingAmounts(restaurantsDto.getContractNumber())
                         .orElseThrow(() -> new RecordNotFoundException("Bill data not found"));
         OperationsLog log = OperationsLog.builder()
                 .operationName(OperationName.BILL_DATA)
