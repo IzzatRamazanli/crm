@@ -34,7 +34,7 @@ public class CustomerValidationLog {
     private String id;
     @Enumerated(EnumType.STRING)
     private OperationName operationName;
-    private String restaurant;
+    private Long restaurant;
     private String contractNumber;
     private String phoneNumber;
     @Enumerated(EnumType.STRING)

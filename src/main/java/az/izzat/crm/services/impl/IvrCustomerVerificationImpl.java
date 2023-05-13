@@ -51,7 +51,7 @@ public class IvrCustomerVerificationImpl implements IvrCustomerVerificationServi
                 .contractNumber(contractNumber)
                 .operationName(OperationName.VERIFICATION)
                 .operationStatus(OperationStatus.SUCCESS)
-                .restaurant(restaurant.get().getName())
+                .restaurant(restaurant.get().getId())
                 .validationStatus(ValidationStatus.VALIDATION_SUCCESS)
                 .build();
         CustomerValidationLog saved = validationLogRepository.save(log);

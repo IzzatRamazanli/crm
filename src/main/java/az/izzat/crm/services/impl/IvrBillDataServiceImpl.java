@@ -30,7 +30,7 @@ public class IvrBillDataServiceImpl implements IvrBillDataService {
     public BillDataResponse getBillData(String id) {
         CustomerValidationLog logData = validationLogRepository.findById(id).orElseThrow(() ->
                 new RecordNotFoundException("Log data not found"));
-        Restaurants restaurant = restaurantsRepository.findById(Long.valueOf(logData.getRestaurant()))
+        Restaurants restaurant = restaurantsRepository.findById(logData.getRestaurant())
                 .orElseThrow(() -> new RecordNotFoundException("Restaurant not found"));
 
         OperationsLog log = OperationsLog.builder()
