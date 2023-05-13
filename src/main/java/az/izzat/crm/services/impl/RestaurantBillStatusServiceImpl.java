@@ -73,7 +73,7 @@ public class RestaurantBillStatusServiceImpl implements RestaurantBillStatusServ
 
     private Restaurants getRestaurants(String contractNumber) {
         return restaurantsRepository
-                .findRestaurantsByContractNumberEndingWith(contractNumber)
+                .findRestaurantsByContractNumberEndsWith(contractNumber)
                 .orElseThrow(() -> new RecordNotFoundException("Restaurant not found"));
     }
 }

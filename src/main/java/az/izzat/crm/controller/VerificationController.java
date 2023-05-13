@@ -1,26 +1,17 @@
 package az.izzat.crm.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
 import az.izzat.crm.dto.resp.ErrorResponse;
 import az.izzat.crm.dto.resp.OtpResponse;
 import az.izzat.crm.dto.resp.RestResponse;
 import az.izzat.crm.dto.resp.VerificationResponse;
 import az.izzat.crm.enums.OperationStatus;
 import az.izzat.crm.services.IvrCustomerVerificationService;
+import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/verify")
@@ -37,7 +28,7 @@ public class VerificationController {
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
             @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})
-    @PostMapping("/contract-number")
+    @GetMapping("/contract-number")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<VerificationResponse> verifyCustomerViaContNumber(
             @RequestParam
@@ -78,7 +69,7 @@ public class VerificationController {
     @ApiResponses(value = {
             @ApiResponse(code = 400, message = "Bad request", response = ErrorResponse.class),
             @ApiResponse(code = 404, message = "No data found", response = ErrorResponse.class)})
-    @PostMapping("/otp")
+    @PostMapping("/otp-code")
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<VerificationResponse> verifyOtpCode(@RequestParam
                                                             @ApiParam(value = "otp code", example = "123456",

@@ -21,10 +21,9 @@ import org.hibernate.annotations.DynamicInsert;
 public class Customer {
     @GeneratedValue
     @Id
-    private String id;
+    private Long id;
     private String fullName;
     private String phoneNumber;
-    private String customerNumber;
     private String address;
 
 }

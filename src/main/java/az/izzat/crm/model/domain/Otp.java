@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Otp {
     @Id
     @GeneratedValue
-    private String id;
+    private Long id;
     @Enumerated(EnumType.STRING)
     private OperationStatus operationStatus;
     private String phoneNumber;

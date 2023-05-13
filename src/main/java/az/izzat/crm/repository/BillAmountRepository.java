@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BillAmountRepository extends JpaRepository<RestaurantBillingAmounts, String> {
+public interface BillAmountRepository extends JpaRepository<RestaurantBillingAmounts, Long> {
     Optional<RestaurantBillingAmounts> findRestaurantBillingAmountsByRestaurants(Restaurants restaurants);
 }

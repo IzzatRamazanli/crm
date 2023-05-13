@@ -28,7 +28,7 @@ public class BillAmountInformationServiceImpl implements BillAmountInformationSe
 
     @Override
     public BillAmountInfoResponse getInfoAboutBillAmount(String contractNumber) {
-        Restaurants restaurant = restaurantsRepository.findRestaurantsByContractNumberEndingWith(contractNumber)
+        Restaurants restaurant = restaurantsRepository.findRestaurantsByContractNumberEndsWith(contractNumber)
                 .orElseThrow(() -> new RecordNotFoundException("Restaurant not found"));
         RestaurantBillingAmounts billData =
                 billAmountRepository.findRestaurantBillingAmountsByRestaurants(restaurant)

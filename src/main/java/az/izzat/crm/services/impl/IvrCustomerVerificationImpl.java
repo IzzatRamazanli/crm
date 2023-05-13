@@ -36,7 +36,7 @@ public class IvrCustomerVerificationImpl implements IvrCustomerVerificationServi
     @Override
     public VerificationResponse verifyCustomerViaContNumber(String contractNumber) {
         Optional<Restaurants> restaurant =
-                restaurantsRepository.findRestaurantsByContractNumberEndingWith(contractNumber);
+                restaurantsRepository.findRestaurantsByContractNumberEndsWith(contractNumber);
         if (restaurant.isEmpty()) {
             CustomerValidationLog log = CustomerValidationLog.builder()
                     .contractNumber(contractNumber)
@@ -51,12 +51,12 @@ public class IvrCustomerVerificationImpl implements IvrCustomerVerificationServi
                 .contractNumber(contractNumber)
                 .operationName(OperationName.VERIFICATION)
                 .operationStatus(OperationStatus.SUCCESS)
-                .restaurant(restaurant.get().getId())
+                .restaurant(restaurant.get().getName())
                 .validationStatus(ValidationStatus.VALIDATION_SUCCESS)
                 .build();
-        validationLogRepository.save(log);
+        CustomerValidationLog saved = validationLogRepository.save(log);
 
-        return VerificationResponse.builder().id(log.getId()).build();
+        return VerificationResponse.builder().id(saved.getId()).build();
 
     }
 
@@ -76,9 +76,9 @@ public class IvrCustomerVerificationImpl implements IvrCustomerVerificationServi
                 .operationStatus(OperationStatus.SUCCESS)
                 .validationStatus(ValidationStatus.VALIDATION_SUCCESS)
                 .build();
-        validationLogRepository.save(log);
+        CustomerValidationLog saved = validationLogRepository.save(log);
 
-        return VerificationResponse.builder().id(log.getId()).build();
+        return VerificationResponse.builder().id(saved.getId()).build();
     }
 
     @Override
