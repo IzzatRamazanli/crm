@@ -1,7 +1,5 @@
 package az.izzat.crm.services.impl;
 
-import java.time.LocalDateTime;
-
 import az.izzat.crm.dto.resp.BillAmountInfoResponse;
 import az.izzat.crm.enums.OperationName;
 import az.izzat.crm.enums.OperationStatus;
@@ -16,6 +14,8 @@ import az.izzat.crm.services.BillAmountInformationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -42,7 +42,7 @@ public class BillAmountInformationServiceImpl implements BillAmountInformationSe
 
         return BillAmountInfoResponse.builder()
                 .contractNumber(billData.getRestaurants().getContractNumber())
-                .billAmount(billData.getAmount())
+                .billAmount(Math.floor(billData.getAmount()))
                 .build();
     }
 }

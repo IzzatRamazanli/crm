@@ -23,7 +23,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Builder
 @Data
 public class OperationsLog {
-    @GeneratedValue
+    @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Id
     private String id;

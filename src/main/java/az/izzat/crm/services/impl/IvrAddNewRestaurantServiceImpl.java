@@ -2,6 +2,7 @@ package az.izzat.crm.services.impl;
 
 import az.izzat.crm.dto.req.NewRestaurantRequest;
 import az.izzat.crm.dto.resp.NewRestaurantResponse;
+import az.izzat.crm.enums.BillingStatus;
 import az.izzat.crm.exception.RecordNotFoundException;
 import az.izzat.crm.model.CustomerValidationLog;
 import az.izzat.crm.model.domain.RestaurantBillingAmounts;
@@ -31,14 +32,15 @@ public class IvrAddNewRestaurantServiceImpl implements IvrAddNewRestaurantServic
         String logId = newRestaurantRequest.getLogId();
         Optional<CustomerValidationLog> logData = validationLogRepository.findById(logId);
         if (logData.isPresent()) {
-            int contractNumber = random.nextInt(9, 999999999);
+            int contractNumber = random.nextInt(100000000, 999999999);
             Restaurants res = Restaurants.builder()
                     .name(newRestaurantRequest.getName())
                     .owner(newRestaurantRequest.getOwner())
                     .contractNumber(String.valueOf(contractNumber))
+                    .billingStatus(BillingStatus.PAYMENT_NEEDED)
                     .location(newRestaurantRequest.getLocation())
                     .build();
-            double billData = random.nextDouble(4, 9999);
+            double billData = random.nextDouble(1000, 9999);
             RestaurantBillingAmounts bres = RestaurantBillingAmounts.builder().
                     restaurants(res)
                     .amount(billData)
@@ -47,7 +49,7 @@ public class IvrAddNewRestaurantServiceImpl implements IvrAddNewRestaurantServic
             restaurantsRepository.save(res);
             return NewRestaurantResponse.builder()
                     .contractNumber(String.valueOf(contractNumber))
-                    .billData(billData)
+                    .billData(Math.floor(billData))
                     .build();
 
         }

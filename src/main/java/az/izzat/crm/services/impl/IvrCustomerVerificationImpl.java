@@ -94,7 +94,7 @@ public class IvrCustomerVerificationImpl implements IvrCustomerVerificationServi
             validationLogRepository.save(log);
             throw new RecordNotFoundException("Customer not found");
         }
-        int otpCode = rnd.nextInt(6, 999999);
+        int otpCode = rnd.nextInt(100000, 999999);
         Otp build = Otp.builder().otpCode(String.valueOf(otpCode)).phoneNumber(phoneNumber).build();
         otpRepository.save(build);
         return OtpResponse.builder().otpCode(String.valueOf(otpCode)).build();
