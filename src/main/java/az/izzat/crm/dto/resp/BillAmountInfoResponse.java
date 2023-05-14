@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class BillAmountInfoResponse {
     private String contractNumber;
     private Double billAmount;
+    private String logId;
 }

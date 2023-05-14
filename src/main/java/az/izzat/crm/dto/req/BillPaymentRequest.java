@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class BillPaymentRequest {
-    private String id;
+    private String logId;
     private Double amount;
 
 }

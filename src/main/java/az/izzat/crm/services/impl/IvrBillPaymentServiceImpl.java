@@ -27,14 +27,14 @@ public class IvrBillPaymentServiceImpl implements IvrBillPaymentService {
 
     @Override
     public String billPayment(BillPaymentRequest request) {
-        String id = request.getId();
+        String id = request.getLogId();
         CustomerValidationLog logData = validationLogRepository.findById(id).orElseThrow(() ->
                 new RecordNotFoundException("Log not found")
         );
 
         Restaurants restaurant = restaurantsRepository.findById(logData.getRestaurant())
                 .orElseThrow(() -> new RecordNotFoundException("Restaurant not found"));
-        if (!restaurant.getBillingStatus().equals(BillingStatus.FREEZE)) {
+        if (!restaurant.getBillingStatus().equals(BillingStatus.FROZEN)) {
             restaurant.setBillAmount(request.getAmount());
             restaurant.setBillingStatus(BillingStatus.POSITIVE);
             restaurantsRepository.save(restaurant);
@@ -43,7 +43,7 @@ public class IvrBillPaymentServiceImpl implements IvrBillPaymentService {
                     .operationStatus(OperationStatus.SUCCESS)
                     .build();
             operationsRepository.save(log);
-            return id;
+            return "Restaurant Bill Status updated to Positive, THANKS";
         }
         throw new BillingNegativeException("Bill status is frozen, unfreeze first");
     }

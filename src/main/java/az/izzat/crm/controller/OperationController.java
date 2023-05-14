@@ -70,13 +70,13 @@ public class OperationController {
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<BillStatusResponse> freezeBillStatus(
             @RequestParam
-            @ApiParam(value = "contract number, must be 4 digits",
+            @ApiParam(value = "validation log id",
                     required = true,
                     example = "1234")
-            String contractNumber) {
+            String logId) {
         return RestResponse.<BillStatusResponse>builder()
                 .status(OperationStatus.SUCCESS)
-                .data(restaurantBillStatusService.freezeBillStatus(contractNumber))
+                .data(restaurantBillStatusService.freezeBillStatus(logId))
                 .build();
     }
 
@@ -89,13 +89,13 @@ public class OperationController {
     @ResponseStatus(HttpStatus.OK)
     public RestResponse<BillStatusResponse> unfreezeBillStatus(
             @RequestParam
-            @ApiParam(value = "contract number, must be 4 digits",
+            @ApiParam(value = "validation log id",
                     required = true,
                     example = "1234")
-            String contractNumber) {
+            String logId) {
         return RestResponse.<BillStatusResponse>builder()
                 .status(OperationStatus.SUCCESS)
-                .data(restaurantBillStatusService.unfreezeBillStatus(contractNumber))
+                .data(restaurantBillStatusService.unfreezeBillStatus(logId))
                 .build();
     }
 

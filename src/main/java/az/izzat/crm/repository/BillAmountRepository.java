@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface BillAmountRepository extends JpaRepository<RestaurantBillingAmounts, Long> {
 
     @Query(value = "select * from restaurants_billing_amount r where r.contract_number=:contractNumber",
-    nativeQuery = true)
+            nativeQuery = true)
     Optional<RestaurantBillingAmounts> findRestaurantBillingAmounts(String contractNumber);
 }
